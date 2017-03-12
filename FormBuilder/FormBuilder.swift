@@ -19,7 +19,7 @@ class FormBuilder {
     init(view: UIView, fields: [Field]) {
         self.view = view
         let screenSize: CGRect = UIScreen.main.bounds
-        self.screenWidth = Int(screenSize.width)
+        self.screenWidth = Int(view.bounds.size.width)
         currentHeight = 50
         for field in fields {
             switch field.type {
@@ -54,6 +54,7 @@ class FormBuilder {
         newTextField.returnKeyType = UIReturnKeyType.done
         newTextField.clearButtonMode = UITextFieldViewMode.whileEditing;
         self.view.addSubview(newTextField)
+        view.layoutIfNeeded()
         currentHeight = currentHeight + 50
     }
     
