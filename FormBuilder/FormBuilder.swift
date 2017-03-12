@@ -23,14 +23,16 @@ class FormBuilder {
         currentHeight = 50
         for field in fields {
             switch field.type {
-            case "textfield":
+            case "text":
                 textField(field: field)
-            case "datefield":
+            case "date":
                 dateField(field: field)
-            case "optionfield":
+            case "option":
                 optionField(field: field)
-            case "radiofield":
+            case "radio":
                 radioField(field: field)
+            case "password":
+                passwordField(field: field)
             default:
                 break
             }
@@ -51,7 +53,7 @@ class FormBuilder {
         newTextField.keyboardType = UIKeyboardType.default
         newTextField.returnKeyType = UIReturnKeyType.done
         newTextField.clearButtonMode = UITextFieldViewMode.whileEditing;
-        view.addSubview(newTextField)
+        self.view.addSubview(newTextField)
         currentHeight = currentHeight + 50
     }
     
@@ -61,7 +63,7 @@ class FormBuilder {
         newDateField.center.x = self.view.center.x
         newDateField.datePickerMode = .date
         newDateField.setValue(textColor, forKey: "textColor")
-        view.addSubview(newDateField)
+        self.view.addSubview(newDateField)
         currentHeight = currentHeight + 150
     }
     
@@ -73,10 +75,10 @@ class FormBuilder {
         newLabel.textColor = textColor
         let newSwitch = UISwitch(frame: CGRect(x:labelPosition,y: currentHeight, width: screenWidth, height: 50))
         newSwitch.isOn = true
-        newSwitch.setOn(true, animated: false);
+        newSwitch.setOn(true, animated: false)
         self.view.addSubview(newLabel)
         self.view.addSubview(newSwitch);
-        currentHeight = currentHeight + 50
+        currentHeight = currentHeight + 60
     }
     
     func radioField(field: Field){
@@ -91,13 +93,32 @@ class FormBuilder {
         }
     }
     
+    func passwordField(field: Field){
+        label(text: field.label)
+        let newTextField = UITextField(frame: CGRect(x: 0, y: currentHeight, width: 200, height: 21))
+        if field.placeholder != nil {
+            newTextField.placeholder = field.placeholder!
+        }
+        newTextField.center.x = self.view.center.x
+        newTextField.textAlignment = .center
+        newTextField.font = UIFont.systemFont(ofSize: 15)
+        newTextField.borderStyle = UITextBorderStyle.roundedRect
+        newTextField.autocorrectionType = UITextAutocorrectionType.no
+        newTextField.keyboardType = UIKeyboardType.default
+        newTextField.returnKeyType = UIReturnKeyType.done
+        newTextField.clearButtonMode = UITextFieldViewMode.whileEditing;
+        newTextField.isSecureTextEntry = true
+        self.view.addSubview(newTextField)
+        currentHeight = currentHeight + 50
+    }
+    
     func label(text: String){
         let label = UILabel(frame: CGRect(x: 0, y: currentHeight, width: 200, height: 21))
         label.text = text
         label.center.x = self.view.center.x
         label.textAlignment = .center
         label.textColor = textColor
-        view.addSubview(label)
+        self.view.addSubview(label)
         currentHeight = currentHeight + 50
     }
     
@@ -110,7 +131,7 @@ class Field {
     var placeholder: String?
     var radioValues: [String]?
     
-    //UITextField
+    //UITextField & Password & Options
     init(type: String, label: String, placeholder: String?) {
         self.type = type
         self.label = label
@@ -123,6 +144,7 @@ class Field {
         self.label = label
     }
     
+    //Radio
     init(type: String, label: String, radioValues: [String]?) {
         self.type = type
         self.label = label
