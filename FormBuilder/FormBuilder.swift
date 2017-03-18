@@ -15,9 +15,11 @@ class FormBuilder {
     var screenWidth: Int
     var currentHeight: Int
     var textColor = UIColor(red:0, green:0, blue:0, alpha:1.0)
+    var xIndex: Int
     
     init(view: UIView, fields: [Field]) {
         self.view = view
+        xIndex = Int(view.frame.size.width)
         let screenSize: CGRect = UIScreen.main.bounds
         self.screenWidth = Int(view.bounds.size.width)
         currentHeight = 50
@@ -41,7 +43,7 @@ class FormBuilder {
     
     func textField(field: Field){
         label(text: field.label)
-        let newTextField = UITextField(frame: CGRect(x: 0, y: currentHeight, width: 200, height: 21))
+        let newTextField = UITextField(frame: CGRect(x: xIndex, y: currentHeight, width: 200, height: 21))
         if field.placeholder != nil {
             newTextField.placeholder = field.placeholder!
         }
@@ -54,13 +56,12 @@ class FormBuilder {
         newTextField.returnKeyType = UIReturnKeyType.done
         newTextField.clearButtonMode = UITextFieldViewMode.whileEditing;
         self.view.addSubview(newTextField)
-        view.layoutIfNeeded()
         currentHeight = currentHeight + 50
     }
     
     func dateField(field: Field){
         label(text: field.label)
-        let newDateField = UIDatePicker(frame: CGRect(x: 0, y: currentHeight, width: screenWidth, height: 100))
+        let newDateField = UIDatePicker(frame: CGRect(x: xIndex, y: currentHeight, width: screenWidth, height: 100))
         newDateField.center.x = self.view.center.x
         newDateField.datePickerMode = .date
         newDateField.setValue(textColor, forKey: "textColor")
@@ -85,7 +86,7 @@ class FormBuilder {
     func radioField(field: Field){
         if field.radioValues != nil {
             let newRadioField = UISegmentedControl(items: field.radioValues)
-            newRadioField.frame = CGRect(x: 0, y: currentHeight, width:200, height: 30)
+            newRadioField.frame = CGRect(x: xIndex, y: currentHeight, width:200, height: 30)
             newRadioField.selectedSegmentIndex = 0
             newRadioField.tintColor = textColor
             newRadioField.center.x = self.view.center.x
@@ -96,7 +97,7 @@ class FormBuilder {
     
     func passwordField(field: Field){
         label(text: field.label)
-        let newTextField = UITextField(frame: CGRect(x: 0, y: currentHeight, width: 200, height: 21))
+        let newTextField = UITextField(frame: CGRect(x: xIndex, y: currentHeight, width: 200, height: 21))
         if field.placeholder != nil {
             newTextField.placeholder = field.placeholder!
         }
