@@ -20,7 +20,8 @@ _ = FormBuilder(view: self.view, fields: fields)
 ```
 
 If you have a long form or undetermined amount of elements, you might want to use something like a scrollview. You can easily pass in a different type of view to the FormBuilder class...
-```
+
+```swift
 //I am setting the content size for my scrollview before I pass it to FormBuilder
 let screenSize: CGRect = UIScreen.main.bounds
 let screenWidth = screenSize.width
