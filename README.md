@@ -23,7 +23,7 @@ let field3 = Field(type: "date", label: "Birthday")
 let field4 = Field(type: "option", label: "Subscribe")
 let field5 = Field(type: "radio", label: "Account Type", radioValues: ["Buyer", "Seller", "Both"])
 let fields: [Field] = [field1, field2, field3, field4, field5]
-myFormBuilder.populateForm(view: self.scrollView, fields: fields)
+myFormBuilder.populateForm(view: self.view, fields: fields)
 ```
 
 If you have a long form or undetermined amount of elements, you might want to use something like a scrollview. You can easily pass in a different type of view to the FormBuilder class...
