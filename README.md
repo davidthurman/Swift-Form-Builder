@@ -7,7 +7,7 @@
 ![Platform](https://img.shields.io/badge/platform-ios-lightgrey.svg)
 
 ------
-![alt_tag](https://i.imgur.com/bSn65k9.png)
+![alt_tag](https://i.imgur.com/Gapw0Ve.png)
 
 
 
