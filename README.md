@@ -2,8 +2,12 @@
 
 ## Overview
 **FormBuilder** is a Swift framework that allows you to easily populate a view with a variety of form elements.
+
 ------ 
-[![Platform](https://img.shields.io/badge/platform-ios-lightgrey.svg)]
+![Platform](https://img.shields.io/badge/platform-ios-lightgrey.svg)
+
+------
+![alt_tag](https://i.imgur.com/bSn65k9.png)
 
 
 
@@ -21,11 +25,11 @@ var myFormBuilder = FormBuilder()
 Create a Field for each form element you need. Each type of element will accept the required values it needs. Then initialize the FormBuilder variable with the view you want populated and an array of your Field elements.
 
 ```swift
-let field1 = Field(type: "text", label: "Username", placeholder: "Enter text here")
-let field2 = Field(type: "password", label: "Password", placeholder: "Enter more text")
-let field3 = Field(type: "date", label: "Birthday")
-let field4 = Field(type: "option", label: "Subscribe")
-let field5 = Field(type: "radio", label: "Account Type", radioValues: ["Buyer", "Seller", "Both"])
+let field1 = Field(type: .text, label: "Username", placeholder: "Enter text here")
+let field2 = Field(type: .password, label: "Password", placeholder: "Enter more text")
+let field3 = Field(type: .date, label: "Birthday")
+let field4 = Field(type: .option, label: "Subscribe")
+let field5 = Field(type: .radio, label: "Account Type", radioValues: ["Buyer", "Seller", "Both"])
 let fields: [Field] = [field1, field2, field3, field4, field5]
 myFormBuilder.populateForm(view: self.view, fields: fields)
 ```
@@ -38,11 +42,11 @@ let screenSize: CGRect = UIScreen.main.bounds
 let screenWidth = screenSize.width
 self.scrollView.contentSize = CGSize(width: screenWidth, height: CGFloat(2000));
         
-let field1 = Field(type: "text", label: "Label 1", placeholder: "Enter text here")
-let field2 = Field(type: "password", label: "Label 2", placeholder: "Enter more text")
-let field3 = Field(type: "date", label: "Date 1")
-let field4 = Field(type: "option", label: "Option 1")
-let field5 = Field(type: "radio", label: "Radio 1", radioValues: ["Val 1", "Val 2", "Val 3"])
+let field1 = Field(type: .text, label: "Username", placeholder: "Enter text here")
+let field2 = Field(type: .password, label: "Password", placeholder: "Enter more text")
+let field3 = Field(type: .date, label: "Birthday")
+let field4 = Field(type: .option, label: "Subscribe")
+let field5 = Field(type: .radio, label: "Account Type", radioValues: ["Buyer", "Seller", "Both"])
 let fields: [Field] = [field1, field2, field3, field4, field5]
 myFormBuilder.populateForm(view: self.scrollView, fields: fields)
 ```

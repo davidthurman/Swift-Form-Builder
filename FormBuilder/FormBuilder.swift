@@ -18,29 +18,28 @@ class FormBuilder {
     var xIndex: Int = 0
     var tagIncrement: Int = 0
     var tagToValue: [Int : String] = [:]
+    var textFieldAlignment: NSTextAlignment = .center
+    var labelAlignment: NSTextAlignment = .center
     
     func populateForm(view: UIView, fields: [Field]) {
         self.view = view
         tagIncrement = 1
         tagToValue = [:]
         xIndex = Int(view.frame.size.width)
-        let screenSize: CGRect = UIScreen.main.bounds
         self.screenWidth = Int(view.bounds.size.width)
         currentHeight = 50
         for field in fields {
             switch field.type {
-            case "text":
+            case .text:
                 textField(field: field)
-            case "date":
+            case .date:
                 dateField(field: field)
-            case "option":
+            case .option:
                 optionField(field: field)
-            case "radio":
+            case .radio:
                 radioField(field: field)
-            case "password":
+            case .password:
                 passwordField(field: field)
-            default:
-                break
             }
         }
     }
@@ -52,7 +51,7 @@ class FormBuilder {
             newTextField.placeholder = field.placeholder!
         }
         newTextField.center.x = self.view!.center.x
-        newTextField.textAlignment = .center
+        newTextField.textAlignment = textFieldAlignment
         newTextField.font = UIFont.systemFont(ofSize: 15)
         newTextField.borderStyle = UITextBorderStyle.roundedRect
         newTextField.autocorrectionType = UITextAutocorrectionType.no
@@ -137,7 +136,7 @@ class FormBuilder {
         let label = UILabel(frame: CGRect(x: 0, y: currentHeight, width: 200, height: 21))
         label.text = text
         label.center.x = self.view!.center.x
-        label.textAlignment = .center
+        label.textAlignment = labelAlignment
         label.textColor = textColor
         self.view!.addSubview(label)
         currentHeight = currentHeight + 50
@@ -177,28 +176,36 @@ class FormBuilder {
     
 }
 
+enum Type {
+    case text
+    case date
+    case option
+    case radio
+    case password
+}
+
 class Field {
     
-    var type: String
+    var type: Type
     var label: String
     var placeholder: String?
     var radioValues: [String]?
     
     //UITextField & Password & Options
-    init(type: String, label: String, placeholder: String?) {
+    init(type: Type, label: String, placeholder: String?) {
         self.type = type
         self.label = label
         self.placeholder = placeholder
     }
     
     //DatePicker
-    init(type: String, label: String) {
+    init(type: Type, label: String) {
         self.type = type
         self.label = label
     }
     
     //Radio
-    init(type: String, label: String, radioValues: [String]?) {
+    init(type: Type, label: String, radioValues: [String]?) {
         self.type = type
         self.label = label
         self.radioValues = radioValues
