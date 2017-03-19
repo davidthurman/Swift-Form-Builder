@@ -2,6 +2,10 @@
 
 ## Overview
 **FormBuilder** is a Swift framework that allows you to easily populate a view with a variety of form elements.
+------ 
+[![Platform](https://img.shields.io/badge/platform-ios-lightgrey.svg)]
+
+
 
 ## Installation
 Drag the FormBuilder.swift file into your project.

@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		323FCCFC1E74DF9500838013 /* Storyboard2.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 323FCCFB1E74DF9500838013 /* Storyboard2.storyboard */; };
+		323FCCFC1E74DF9500838013 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 323FCCFB1E74DF9500838013 /* Storyboard.storyboard */; };
 		32C414A41E722E6600899204 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C414A31E722E6600899204 /* AppDelegate.swift */; };
 		32C414A61E722E6600899204 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C414A51E722E6600899204 /* ViewController.swift */; };
 		32C414AB1E722E6600899204 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 32C414AA1E722E6600899204 /* Assets.xcassets */; };
@@ -27,7 +27,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		323FCCFB1E74DF9500838013 /* Storyboard2.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard2.storyboard; sourceTree = "<group>"; };
+		323FCCFB1E74DF9500838013 /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
 		32C414A01E722E6600899204 /* FormBuilder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FormBuilder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		32C414A31E722E6600899204 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		32C414A51E722E6600899204 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -85,7 +85,7 @@
 				32C414AC1E722E6600899204 /* LaunchScreen.storyboard */,
 				32C414AF1E722E6600899204 /* Info.plist */,
 				32C414C31E722EA900899204 /* FormBuilder.swift */,
-				323FCCFB1E74DF9500838013 /* Storyboard2.storyboard */,
+				323FCCFB1E74DF9500838013 /* Storyboard.storyboard */,
 			);
 			path = FormBuilder;
 			sourceTree = "<group>";
@@ -183,7 +183,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				323FCCFC1E74DF9500838013 /* Storyboard2.storyboard in Resources */,
+				323FCCFC1E74DF9500838013 /* Storyboard.storyboard in Resources */,
 				32C414AE1E722E6600899204 /* LaunchScreen.storyboard in Resources */,
 				32C414AB1E722E6600899204 /* Assets.xcassets in Resources */,
 			);
