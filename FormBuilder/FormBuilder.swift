@@ -11,14 +11,18 @@ import UIKit
 
 class FormBuilder {
     
-    var view: UIView
-    var screenWidth: Int
-    var currentHeight: Int
+    var view: UIView? = nil
+    var screenWidth: Int = 0
+    var currentHeight: Int = 0
     var textColor = UIColor(red:0, green:0, blue:0, alpha:1.0)
-    var xIndex: Int
+    var xIndex: Int = 0
+    var tagIncrement: Int = 0
+    var tagToValue: [Int : String] = [:]
     
-    init(view: UIView, fields: [Field]) {
+    func populateForm(view: UIView, fields: [Field]) {
         self.view = view
+        tagIncrement = 1
+        tagToValue = [:]
         xIndex = Int(view.frame.size.width)
         let screenSize: CGRect = UIScreen.main.bounds
         self.screenWidth = Int(view.bounds.size.width)
@@ -47,7 +51,7 @@ class FormBuilder {
         if field.placeholder != nil {
             newTextField.placeholder = field.placeholder!
         }
-        newTextField.center.x = self.view.center.x
+        newTextField.center.x = self.view!.center.x
         newTextField.textAlignment = .center
         newTextField.font = UIFont.systemFont(ofSize: 15)
         newTextField.borderStyle = UITextBorderStyle.roundedRect
@@ -55,17 +59,23 @@ class FormBuilder {
         newTextField.keyboardType = UIKeyboardType.default
         newTextField.returnKeyType = UIReturnKeyType.done
         newTextField.clearButtonMode = UITextFieldViewMode.whileEditing;
-        self.view.addSubview(newTextField)
+        newTextField.tag = tagIncrement
+        tagToValue[tagIncrement] = field.label
+        tagIncrement = tagIncrement + 1
+        self.view!.addSubview(newTextField)
         currentHeight = currentHeight + 50
     }
     
     func dateField(field: Field){
         label(text: field.label)
         let newDateField = UIDatePicker(frame: CGRect(x: xIndex, y: currentHeight, width: screenWidth, height: 100))
-        newDateField.center.x = self.view.center.x
+        newDateField.center.x = self.view!.center.x
         newDateField.datePickerMode = .date
         newDateField.setValue(textColor, forKey: "textColor")
-        self.view.addSubview(newDateField)
+        newDateField.tag = tagIncrement
+        tagToValue[tagIncrement] = field.label
+        tagIncrement = tagIncrement + 1
+        self.view!.addSubview(newDateField)
         currentHeight = currentHeight + 150
     }
     
@@ -78,8 +88,11 @@ class FormBuilder {
         let newSwitch = UISwitch(frame: CGRect(x:labelPosition,y: currentHeight, width: screenWidth, height: 50))
         newSwitch.isOn = true
         newSwitch.setOn(true, animated: false)
-        self.view.addSubview(newLabel)
-        self.view.addSubview(newSwitch);
+        newSwitch.tag = tagIncrement
+        tagToValue[tagIncrement] = field.label
+        tagIncrement = tagIncrement + 1
+        self.view!.addSubview(newLabel)
+        self.view!.addSubview(newSwitch);
         currentHeight = currentHeight + 60
     }
     
@@ -89,8 +102,11 @@ class FormBuilder {
             newRadioField.frame = CGRect(x: xIndex, y: currentHeight, width:200, height: 30)
             newRadioField.selectedSegmentIndex = 0
             newRadioField.tintColor = textColor
-            newRadioField.center.x = self.view.center.x
-            self.view.addSubview(newRadioField)
+            newRadioField.center.x = self.view!.center.x
+            newRadioField.tag = tagIncrement
+            tagToValue[tagIncrement] = field.label
+            tagIncrement = tagIncrement + 1
+            self.view!.addSubview(newRadioField)
             currentHeight = currentHeight + 50
         }
     }
@@ -101,7 +117,7 @@ class FormBuilder {
         if field.placeholder != nil {
             newTextField.placeholder = field.placeholder!
         }
-        newTextField.center.x = self.view.center.x
+        newTextField.center.x = self.view!.center.x
         newTextField.textAlignment = .center
         newTextField.font = UIFont.systemFont(ofSize: 15)
         newTextField.borderStyle = UITextBorderStyle.roundedRect
@@ -110,18 +126,53 @@ class FormBuilder {
         newTextField.returnKeyType = UIReturnKeyType.done
         newTextField.clearButtonMode = UITextFieldViewMode.whileEditing;
         newTextField.isSecureTextEntry = true
-        self.view.addSubview(newTextField)
+        newTextField.tag = tagIncrement
+        tagToValue[tagIncrement] = field.label
+        tagIncrement = tagIncrement + 1
+        self.view!.addSubview(newTextField)
         currentHeight = currentHeight + 50
     }
     
     func label(text: String){
         let label = UILabel(frame: CGRect(x: 0, y: currentHeight, width: 200, height: 21))
         label.text = text
-        label.center.x = self.view.center.x
+        label.center.x = self.view!.center.x
         label.textAlignment = .center
         label.textColor = textColor
-        self.view.addSubview(label)
+        self.view!.addSubview(label)
         currentHeight = currentHeight + 50
+    }
+    
+    func getValues() -> [String : String]{
+        var valuestoReturn: [String : String] = [:]
+        for counter in 1...tagToValue.count {
+            var userInput = ""
+            if let currentField = view!.viewWithTag(counter) as? UITextField {
+                if currentField.text != nil {
+                    userInput = currentField.text!
+                }
+                else {
+                    userInput = ""
+                }
+                
+            }
+            else if let currentField = view!.viewWithTag(counter) as? UIDatePicker {
+                let dateFormatter = DateFormatter()
+                dateFormatter.locale = Locale(identifier: "en_US")
+                dateFormatter.setLocalizedDateFormatFromTemplate("MMMMdyyyy")
+                userInput = dateFormatter.string(from: currentField.date)
+            }
+            else if let currentField = view!.viewWithTag(counter) as? UISwitch {
+                userInput = String(currentField.isOn)
+            }
+            else if let currentField = view!.viewWithTag(counter) as? UISegmentedControl {
+                userInput = String(currentField.selectedSegmentIndex)
+            }
+            
+            valuestoReturn[tagToValue[counter]!] = userInput
+            
+        }
+        return valuestoReturn
     }
     
 }

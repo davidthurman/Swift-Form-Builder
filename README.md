@@ -7,6 +7,7 @@
 Drag the FormBuilder.swift file into your project.
 
 ## Usage
+### Building the Form
 Create a Field for each form element you need. Each type of element will accept the required values it needs. Then initialize the FormBuilder class with the view you want populated and an array of your Field elements.
 
 ```swift
@@ -35,5 +36,21 @@ let field5 = Field(type: "radio", label: "Radio 1", radioValues: ["Val 1", "Val 
 let fields: [Field] = [field1, field2, field3, field4, field5]
 _ = FormBuilder(view: self.scrollView, fields: fields)
 ```
+
+Note: I came across a bug using an outdated version of XCode that creates issues when passing a ScrollView to FormBuilder. If you are having any issues, try updating XCode.
+
+### Retrieve Values
+In order to retrieve the values from your FormBuilder, call the getValues function from your FormBuilder variable
+```swift
+if formBuilder != nil {
+    let myValues = formBuilder!.getValues()
+    for value in myValues {
+        print(value.key, " : ", value.value)
+    }
+            
+}
+```
+
+Note: FormBuilder uses tags to keep track of every element in the view. It will assign your first form element to tag 1, your second element to tag 2, and etc. If you are using other tags in the same view controller, make sure you do not use conflicting tag numbers.
 
 

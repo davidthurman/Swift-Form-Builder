@@ -23,15 +23,26 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QJp-xG-L4Z">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="595"/>
                                 <color key="backgroundColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                             </scrollView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mdR-Bl-FS3">
+                                <rect key="frame" x="0.0" y="603" width="375" height="64"/>
+                                <state key="normal" title="Get Values"/>
+                                <connections>
+                                    <action selector="getValues:" destination="Ibz-ab-zy6" eventType="touchUpInside" id="ahX-PK-YiM"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="il4-pY-86E" firstAttribute="top" secondItem="mdR-Bl-FS3" secondAttribute="bottom" id="0OQ-g7-pch"/>
                             <constraint firstItem="QJp-xG-L4Z" firstAttribute="top" secondItem="K0f-XY-gQa" secondAttribute="topMargin" id="KiU-S0-RCs"/>
-                            <constraint firstAttribute="bottomMargin" secondItem="QJp-xG-L4Z" secondAttribute="bottom" id="OfF-B5-AE3"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="QJp-xG-L4Z" secondAttribute="bottom" constant="72" id="OfF-B5-AE3"/>
+                            <constraint firstItem="mdR-Bl-FS3" firstAttribute="top" secondItem="QJp-xG-L4Z" secondAttribute="bottom" constant="8" id="Pv0-Qw-luK"/>
                             <constraint firstAttribute="trailing" secondItem="QJp-xG-L4Z" secondAttribute="trailing" id="Qbj-S3-YW9"/>
+                            <constraint firstItem="mdR-Bl-FS3" firstAttribute="leading" secondItem="K0f-XY-gQa" secondAttribute="leading" id="Y34-EN-JFn"/>
+                            <constraint firstAttribute="trailing" secondItem="mdR-Bl-FS3" secondAttribute="trailing" id="f0k-u0-dmn"/>
                             <constraint firstItem="QJp-xG-L4Z" firstAttribute="leading" secondItem="K0f-XY-gQa" secondAttribute="leading" id="fVs-Kc-j57"/>
                         </constraints>
                     </view>
@@ -41,7 +52,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tPX-Hr-J4P" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6" y="65"/>
+            <point key="canvasLocation" x="5.5999999999999996" y="64.31784107946028"/>
         </scene>
     </scenes>
 </document>
