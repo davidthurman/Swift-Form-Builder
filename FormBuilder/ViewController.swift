@@ -11,7 +11,7 @@ import UIKit
 class ViewController: UIViewController {
     
     @IBOutlet var scrollView: UIScrollView!
-    var myFormBuilder : FormBuilder? = nil
+    var myFormBuilder = FormBuilder()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,8 +27,7 @@ class ViewController: UIViewController {
         let field4 = Field(type: "option", label: "Subscribe")
         let field5 = Field(type: "radio", label: "Account Type", radioValues: ["Buyer", "Seller", "Both"])
         let fields: [Field] = [field1, field2, field3, field4, field5]
-        myFormBuilder = FormBuilder()
-        myFormBuilder!.populateForm(view: self.scrollView, fields: fields)
+        myFormBuilder.populateForm(view: self.scrollView, fields: fields)
         
     }
     
@@ -39,14 +38,10 @@ class ViewController: UIViewController {
     }
 
     @IBAction func getValues(_ sender: Any) {
-        if myFormBuilder != nil {
-            let myValues = myFormBuilder!.getValues()
-            for value in myValues {
-                print(value.key, " : ", value.value)
-            }
-            
+        let myValues = myFormBuilder.getValues()
+        for value in myValues {
+            print(value.key, " : ", value.value)
         }
-    
     }
 
 }

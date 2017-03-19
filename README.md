@@ -11,7 +11,7 @@ Drag the FormBuilder.swift file into your project.
 Create a FormBuilder variable in your ViewController
 
 ```swift
-var myFormBuilder : FormBuilder? = nil
+var myFormBuilder = FormBuilder()
 ```
 
 Create a Field for each form element you need. Each type of element will accept the required values it needs. Then initialize the FormBuilder variable with the view you want populated and an array of your Field elements.
@@ -23,8 +23,7 @@ let field3 = Field(type: "date", label: "Birthday")
 let field4 = Field(type: "option", label: "Subscribe")
 let field5 = Field(type: "radio", label: "Account Type", radioValues: ["Buyer", "Seller", "Both"])
 let fields: [Field] = [field1, field2, field3, field4, field5]
-myFormBuilder = FormBuilder()
-myFormBuilder!.populateForm(view: self.view, fields: fields)
+myFormBuilder.populateForm(view: self.scrollView, fields: fields)
 ```
 
 If you have a long form or undetermined amount of elements, you might want to use something like a scrollview. You can easily pass in a different type of view to the FormBuilder class...
@@ -41,8 +40,7 @@ let field3 = Field(type: "date", label: "Date 1")
 let field4 = Field(type: "option", label: "Option 1")
 let field5 = Field(type: "radio", label: "Radio 1", radioValues: ["Val 1", "Val 2", "Val 3"])
 let fields: [Field] = [field1, field2, field3, field4, field5]
-myFormBuilder = FormBuilder()
-myFormBuilder!.populateForm(view: self.scrollView, fields: fields)
+myFormBuilder.populateForm(view: self.scrollView, fields: fields)
 ```
 
 Note: I came across a bug using an outdated version of XCode that creates issues when passing a ScrollView to FormBuilder. If you are having any issues, try updating XCode.
@@ -50,12 +48,9 @@ Note: I came across a bug using an outdated version of XCode that creates issues
 ### Retrieve Values
 In order to retrieve the values from your FormBuilder, call the getValues function from your FormBuilder variable
 ```swift
-if formBuilder != nil {
-    let myValues = formBuilder!.getValues()
-    for value in myValues {
-        print(value.key, " : ", value.value)
-    }
-            
+let myValues = myFormBuilder.getValues()
+for value in myValues {
+    print(value.key, " : ", value.value)
 }
 ```
 
